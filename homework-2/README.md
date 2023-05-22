@@ -18,3 +18,6 @@
 
 ## Ожидаемое поведение
 - Код в файле `main.py` должен выдавать ожидаемые значения
+# for i in reader
+            #     instance = cls(i['name'], i['price'], i['quantity'])
+            #     list_of_instance.append(instance)
