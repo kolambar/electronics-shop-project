@@ -49,6 +49,9 @@ class Item:
         self.price = self.price * Item.pay_rate
     @classmethod
     def instantiate_from_csv(cls):
+        '''
+        класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv
+        '''
         with open(PATH_TO_FILE, newline='', encoding='cp1251') as csvfile:
             reader = DictReader(csvfile)
             list_of_instance = [cls(i['name'], i['price'], i['quantity']) for i in reader]
@@ -56,6 +59,10 @@ class Item:
 
     @staticmethod
     def string_to_number(string):
+        '''
+        статический метод, возвращающий число из числа-строки.
+        работает с дробными числами по правилам математики
+        '''
         if '.' in string:
             return int(round(float(string)))
         elif string.isdigit():
