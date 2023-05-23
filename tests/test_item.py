@@ -33,3 +33,11 @@ def test_string_to_number():
 def test_string_to_num_without_dig():
         with pytest.raises(TypeError):
             Item.string_to_number('asd')
+
+
+def test___str__(test_element):
+    assert str(test_element) == 'Смартфон'
+
+
+def test___repr__(test_element):
+    assert repr(test_element) == "Item('Смартфон', 10000, 20)"
