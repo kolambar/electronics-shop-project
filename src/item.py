@@ -36,11 +36,22 @@ class Item:
 
     @name.setter
     def name(self, name):
+        """
+        устанавливаем имя товара. следим, тчобы оно было короче 11 символов
+        """
         if len(name) < 11:
             self.__name = name
         else:
             raise Exception('Длина наименования товара превышает 10 символов.')
 
+    def __add__(self, other):
+        """
+        складываем количество товара
+        """
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        else:
+            raise ValueError('Складывать можно только предметы (Item) с другими предметами (например Phone)')
 
     def calculate_total_price(self) -> float:
         """
