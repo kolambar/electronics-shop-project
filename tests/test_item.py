@@ -31,8 +31,8 @@ def test_string_to_number():
     assert Item.string_to_number('15.4') == 15
 
 def test_string_to_num_without_dig():
-        with pytest.raises(TypeError):
-            Item.string_to_number('asd')
+    with pytest.raises(TypeError):
+        Item.string_to_number('asd')
 
 
 def test___str__(test_element):
@@ -41,3 +41,8 @@ def test___str__(test_element):
 
 def test___repr__(test_element):
     assert repr(test_element) == "Item('Смартфон', 10000, 20)"
+
+
+def test___add__(test_element):
+    phone_2 = Item("iPhone 13", 80_000, 10)
+    assert test_element + phone_2 == 30
