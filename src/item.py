@@ -3,6 +3,8 @@ import os
 
 
 PATH_TO_FILE = os.path.join(os.path.abspath('..'), 'src', 'items.csv')
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -69,12 +71,17 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         '''
-        класс-метод, инициализирующий экземпляры класса `Item` данными из файла _src/items.csv
+        класс-метод, инициализирующий экземпляры класса `Item` данными из файла src/items.csv
         '''
-        with open(PATH_TO_FILE, newline='', encoding='cp1251') as csvfile:
-            reader = DictReader(csvfile)
-            list_of_instance = [cls(i['name'], i['price'], i['quantity']) for i in reader]
-        return list_of_instance
+        try:
+            with open(PATH_TO_FILE, newline='', encoding='cp1251') as csvfile:
+                reader = DictReader(csvfile)
+                list_of_instance = [cls(i['name'], i['price'], i['quantity']) for i in reader]
+                return list_of_instance
+        except FileNotFoundError:
+            print('Отсутствует файл item.csv')
+        except KeyError:
+            raise InstantiateCSVError('Файл item.csv поврежден')
 
     @staticmethod
     def string_to_number(string):
@@ -88,3 +95,7 @@ class Item:
             return int(string)
         else:
             raise TypeError('Строка не число')
+
+
+class InstantiateCSVError(Exception):
+    pass
